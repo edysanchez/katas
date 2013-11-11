@@ -12,8 +12,8 @@ public class RomanNumerals {
         if (number == 0) {
             return "";
         }
-
-        for (int i = 1; i <= 3; ++i) {
+	int numbersLength=numbers.length;
+        for (int i = 1; i <= numbersLength; ++i) {
             if (number < numbers[i]) {
                 return conversion(i, number);
             }
