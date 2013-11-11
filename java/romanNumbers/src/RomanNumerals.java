@@ -13,7 +13,7 @@ public class RomanNumerals {
             return "";
         }
 	int numbersLength=numbers.length;
-        for (int i = 1; i <= numbersLength; ++i) {
+        for (int i = 0; i <= numbersLength; i++) {
             if (number < numbers[i]) {
                 return conversion(i, number);
             }
