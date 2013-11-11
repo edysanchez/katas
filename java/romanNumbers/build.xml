@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="RomanNumbersKata" default="test" basedir=".">
+<property name="testdir" location="test"/>
+<property name="srcdir" location="src"/>
+<property name="junitdir" location="/usr/share/java/junit4-4.11.jar"/>
+<property name="full-compile" value="true"/>
+<path id="classpath.base" />
+<path id="classpath.test" >
+<pathelement location="${junitdir}" />
+<pathelement location="${testdir}" />
+<pathelement location="${srcdir}" />
+<path refid="classpath.base" />
+</path>
+<target name="clean">
+<delete verbose="${full-verbose}">
+<fileset dir="${testdir}" includes="**/*.class" />
+</delete>
+</target>
+<target name="compile" depends="clean">
+<javac includeantruntime="false" srcdir="${srcdir}" destdir="${testdir}" verbose="${full-compile}">
+<classpath refid="classpath.test" />
+</javac>
+</target>
+<target name="compiletest" depends="compile">
+
+<javac includeantruntime="false" srcdir="${testdir}" destdir="${testdir}" verbose="${full-compile}">
+<classpath refid="classpath.test" />
+</javac>
+</target>
+<target name="test" depends="compile,compiletest">
+<junit>
+<classpath  refid="classpath.test"/>
+<formatter type="brief" usefile="false" />
+<batchtest fork="yes" todir="${testdir}">
+<fileset dir="${testdir}">
+<include name="**/*Tests.java" />
+</fileset>
+</batchtest>
+</junit>
+</target>
+</project>
+
